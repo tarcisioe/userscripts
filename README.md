@@ -2,7 +2,7 @@ Userscripts
 ===========
 
 My userscripts. To install them, just click the links below (you must have an
-extension such as [Violentmonkey](https://violentmonkey.github.io/).
+extension such as [Violentmonkey](https://violentmonkey.github.io/)).
 
 Scripts
 -------
