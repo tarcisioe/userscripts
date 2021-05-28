@@ -3,7 +3,7 @@
 // @namespace   tarcisioe
 // @match       https://meet.jit.si/*
 // @grant       none
-// @version     1.1
+// @version     1.1.1
 // @author      Tarcísio Eduardo Moreira Crocomo
 // @description Adds desktop notifications for Jitsi's chat and raise hand features.
 // ==/UserScript==
@@ -65,6 +65,7 @@
         }
       },
     );
-
+  }
+    
   main();
 })();
