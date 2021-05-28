@@ -3,7 +3,7 @@
 // @namespace   tarcisioe
 // @match       https://meet.jit.si/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      Tarcísio Eduardo Moreira Crocomo
 // @description Adds desktop notifications for Jitsi's chat and raise hand features.
 // ==/UserScript==
@@ -45,22 +45,26 @@
 
     room.addEventListener(
       'conference.participant_property_changed',
-      (user, property, _, new_value) => {
-        if (property === 'raisedHand' && new_value === "true") {
-          notify("Hand raised", `${user._displayName} levantou a mão`);
+      (user, property, _, newValue) => {
+        if (property === 'raisedHand') {
+          const displayName = user.getDisplayName();
+          const [title, text] = newValue ?
+                ["Hand raised", `${displayName} raised their hand`] :
+                ["Hand lowered", `${displayName} lowered their hand`];
+          notify(title, text);
         }
       },
     );
 
     room.addEventListener(
       'conference.messageReceived',
-      (userID, message, _2, displayName) => {
+      (userID, message, _, _2) => {
         if (userID != ownUserID) {
+          const displayName = conference.getParticipantById(userID).getDisplayName();
           notify("New message", `${displayName}: ${message}`);
         }
       },
     );
-  }
 
   main();
 })();
